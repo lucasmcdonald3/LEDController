@@ -1,0 +1,6 @@
+{
+  "Title" : "LED Controller",
+  "Decription" : "A simple remote that turns an LED on and off.",
+  "Author" : "Lucas McDonald",
+  "Remote Type" : "SingleButton"
+}
