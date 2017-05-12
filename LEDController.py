@@ -14,7 +14,7 @@ def LEDController(self):
         GPIO.setup(3, GPIO.OUT)
         
         # open the text file with the duty cycle
-        file = open("dutyCycle.txt")
+        file = open("dutyCycle.txt", "w")
         
         # set the duty cycle to the stored value
         self.dutyCycle = int(file.read())
@@ -27,18 +27,24 @@ def LEDController(self):
     def max(self):
         self.dutyCycle = 100
         self.p.ChangeDutyCycle(self.dutyCycle)
+        f.write(String(self.dutyCycle))
     
     # sets duty cycle to 0
     def min(self):
         self.dutyCycle = 0
         self.p.ChangeDutyCycle(self.dutyCycle)
+        f.write(String(self.dutyCycle))
         
     # increases duty cycle by 10
     def stepUp(self):
-        self.dutyCycle += 10
-        self.p.ChangeDutyCycle(self.dutyCycle)
+        if(self.dutyCycle < 100):
+            self.dutyCycle += 10
+            self.p.ChangeDutyCycle(self.dutyCycle)
+            f.write(String(self.dutyCycle))
 
     # decreases duty cycle by 10
     def stepDown(self):
-        self.dutyCycle -= 10
-        self.p.ChangeDutyCycle(self.dutyCycle)
+        if(self.dutyCycle > 0):
+            self.dutyCycle -= 10
+            self.p.ChangeDutyCycle(self.dutyCycle)
+            f.write(String(self.dutyCycle))
