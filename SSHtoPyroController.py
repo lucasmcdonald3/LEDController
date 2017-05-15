@@ -6,13 +6,13 @@
 
 import sys
 import time
-import LEDController
+from LEDController import LEDController
 
 # LEDController uses the Stepper Remote, which takes in one argument.
 arg = sys.argv[1]
 
 # Create the LEDController object that will manage the LED.
-ledObject = LEDController.LEDController()
+ledObject = LEDController()
 
 # Based on the argument in the command, tell the LEDController to do something.
 # You CANNOT change the equality tests in the if statement.
