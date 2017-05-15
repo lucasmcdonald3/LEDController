@@ -5,7 +5,7 @@
 
 import RPi.GPIO as GPIO
 
-def LEDController(self):
+class LEDController():
 
     def __init__(self):
         
@@ -14,37 +14,39 @@ def LEDController(self):
         GPIO.setup(3, GPIO.OUT)
         
         # open the text file with the duty cycle
-        file = open("dutyCycle.txt", "w")
+        self.file = open("dutyCycle.txt", "r")
         
         # set the duty cycle to the stored value
-        self.dutyCycle = int(file.read())
+        self.dutyCycle = int(self.file.read())
         
         # start the PWM with the duty cycle
         self.p = GPIO.PWM(3, self.dutyCycle)
         self.p.start(self.dutyCycle)
+
+	self.file = open("dutyCycle.txt", "w")
     
     # sets duty cycle to 100
     def max(self):
         self.dutyCycle = 100
         self.p.ChangeDutyCycle(self.dutyCycle)
-        f.write(String(self.dutyCycle))
+        self.file.write(str(self.dutyCycle))
     
     # sets duty cycle to 0
     def min(self):
         self.dutyCycle = 0
         self.p.ChangeDutyCycle(self.dutyCycle)
-        f.write(String(self.dutyCycle))
+        self.file.write(str(self.dutyCycle))
         
     # increases duty cycle by 10
     def stepUp(self):
         if(self.dutyCycle < 100):
             self.dutyCycle += 10
             self.p.ChangeDutyCycle(self.dutyCycle)
-            f.write(String(self.dutyCycle))
+            self.file.write(str(self.dutyCycle))
 
     # decreases duty cycle by 10
     def stepDown(self):
         if(self.dutyCycle > 0):
             self.dutyCycle -= 10
             self.p.ChangeDutyCycle(self.dutyCycle)
-            f.write(String(self.dutyCycle))
+            self.file.write(str(self.dutyCycle))
