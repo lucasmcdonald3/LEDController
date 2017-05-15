@@ -2,5 +2,5 @@
   "Title" : "LED Controller",
   "Description" : "A simple remote that turns an LED on and off.",
   "Author" : "Lucas McDonald",
-  "Remote Type" : "SingleButton"
+  "Remote Type" : "Stepper"
 }
